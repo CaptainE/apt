@@ -2,9 +2,9 @@
 
 # Adversarial Pivotal Tuning
 
-This is the repository that contains source code for the [Nerfies website](https://nerfies.github.io).
+This is the repository that contains source code for the [APT website](https://captaine.github.io/apt/).
 
-If you find Nerfies useful for your work please cite:
+If you find Adversarial Pivotal Tuning useful for your work please cite:
 ```
 @article{christensen2022apt
   author    = {Christensen, Peter Ebert and Snæbjarnarson, Vésteinn and Dittadi, Andrea and Belongie, Serge and Benaim, Sagie},
