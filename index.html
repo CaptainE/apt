@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Assessing Neural Network Robustness via Adversarial Pivotal Tuning">
+  <meta name="keywords" content="Adversarial Pivotal Tuning, APT">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assessing Neural Network Robustness via Adversarial Pivotal Tuning</title>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://captaine.github.io/Searching-for-Structure-in-Unfalsifiable-Claims/">
+            PAPYER
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Assessing Neural Network Robustness via Adversarial Pivotal Tuning</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://captaine.github.io/">Peter Ebert Christensen</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://vesteinn.is/">Vésteinn Snæbjarnarson</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://addtt.github.io/">Andrea Dittadi</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://sergebelongie.github.io/">Serge Belongie</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://sagiebenaim.github.io/">Sagie Benaim</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Copenhagen,</span>
+            <span class="author-block"><sup>2</sup>KTH Stockholm</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">APT</span> autogenerates images that will atempt to fool a classifier while also being photo realistic
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-full-width">
+
+                <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin-top:-50px;"> 
+                <h2 class="title is-3">Visualizations</h2>
+                <h3 class="title is-4">Overview of the Generated Manipulations</h3>
+                <img srcset="teaser.png" alt="alt" width="1000px" height="563px" image-rendering: high-quality;>
+                <p>
+                    Row 1 shows the input images. Row 2 shows the images resulting from our manipulations. Row 3 (and 4)
+shows the result of Dual manifold adversarial robustness, using pixel-space adversarial manipulations applied to StyleGAN-XL’s reconstructions. Row 4 shows the result
+using latent space manipulates applied using StyleGAN-XL. Our method manipulates images in a non-trivial but class-preserving
+manner, using the full capacity of a pretrained StyleGAN generator. For example, it removes the eye of the mantis (second column), changes
+the type of race car (third column), changes the color of the crab tail (fifth column), removes the text in a spaceship (seventh column) and
+removes some of the ropes (eighth column). All of these are class-preserving examples that fool a pretrained PRIME-ResNet50 
+classifier. In contrast, Dual manifold adversarial robustness either generates noisy and less realistic images (row 3) or images which differ significantly semantically and
+which do not preserve the input class (row 4).
+                </p>
+                    <!-- <embed src="taxon_labels_numbers.png" width="1000px" height="563px" /> -->
+                <!-- Interpolating. -->
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+            <p>
+            The ability to assess the robustness of image classifiers to a diverse set of manipulations is essential to their deployment in the real world. 
+            Recently, semantic manipulations of real images have been considered for this purpose, as they may not arise using standard adversarial settings.
+            However, such semantic manipulations are often limited to style, color or attribute changes. 
+            While expressive, these manipulations do not consider the full capacity of a pretrained generator to affect adversarial image manipulations. 
+            In this work, we aim at leveraging the full capacity of a pretrained image generator to generate highly detailed, diverse and photorealistic image manipulations. 
+            Inspired by recent GAN-based image inversion methods, we propose a method called Adversarial Pivotal Tuning (APT). 
+            APT first finds a pivot latent space input to a pretrained generator that best reconstructs an input image. 
+            It then adjusts the weights of the generator to create small, but semantic, manipulations which fool a pretrained classifier. 
+            Crucially, APT changes both the input and the weights of the pretrained generator, while preserving its expressive latent editing capability, thus allowing the use of its full capacity in creating semantic adversarial manipulations. 
+            We demonstrate that APT generates a variety of semantic image manipulations, which preserve the input image class, but which fool a variety of pretrained classifiers. 
+            We further demonstrate that classifiers trained to be robust to other robustness benchmarks, are not robust to our generated manipulations and propose an approach to improve the robustness towards our generated manipulations.
+            </p>
+            <p> 
+                TL;DR We propose a framework for generation of photorealistic images that can fool a classifier using automatic semantic manipulations
+            </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="column is-full-width  has-text-centered">
+
+      <!-- Visual Effects. -->
+
+        <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin-top:-50px;"> 
+        <h2 class="title is-3">The Adversarial Pivotal Tuning (APT) framework</h2>
+        <img srcset="apt.png" alt="alt" width="1000px" height="563px" image-rendering: high-quality;>
+        <p>
+            In the first step, we optimize a style code wp using standard latent optimization Lo, while keeping the generator G frozen. 
+            The loss is computed between the ground-truth image xgtr and the generated image xgen. 
+            In the second step, we freeze wp and finetune G (shown in red) using the three objectives; a
+reconstruction objective Lrec, the projected GAN objective using the discriminator D, LP G, and our fooling objective LCE using the
+classifier C. A ∗ is used to indicate a frozen component
+          </p>
+            <!-- <embed src="taxon_labels_numbers.png" width="1000px" height="563px" /> -->
+        <!-- Interpolating. -->
+      
+      </div>
+      <br>
+      <br>
+      <!--/ Visual Effects. -->
+
+      
+
+
+
+    <div class="column is-full-width  has-text-centered">
+
+    <!-- Visual Effects. -->
+
+        <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin-top:-50px;"> 
+        <h2 class="title is-3">Manipulations using different classifiers</h2>
+        <img srcset="classifiers.png" alt="alt" width="1000px" height="563px" image-rendering: high-quality;>
+        <p>
+            Top row shows input images. The middle row shows APT manipulations for a ResNet-50 classifier,
+and the bottom row shows APT manipulations from a FAN-VIT classifier. Column 1-4+7 illustrates similar manipulations for both classifiers, 
+column 5-6 shows texture and spatial manipulations, the last column showcase a fooling image without a clear APT manipulation.
+        </p>
+            <!-- <embed src="taxon_labels_numbers.png" width="1000px" height="563px" /> -->
+        <!-- Interpolating. -->
+    
+    </div>
+    <!--/ Visual Effects. -->
+    <br>
+    <br>
+        
+  
+    <div class="column is-full-width  has-text-centered">
+
+    <!-- Visual Effects. -->
+
+        <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin-top:-50px;"> 
+        <h2 class="title is-3">Transferability of APT generated samples</h2>
+        <img srcset="transfer.png" alt="alt" width="1000px" height="563px" image-rendering: high-quality;>
+        <p>
+             For the ImageNet-1k validation set, we consider samples generated to fool a PRIME-Resnet50 (PRIME) and a FAN-VIT (FAN) pretrained classifier. We then test the accuracy (Acc) and mean softmax probability
+of the labelled class (Conf) on those samples. The left column indicates the classifier on which we tested the accuracy of real or generatedsamples. ∗ indicates the accuracy and confidence of samples generated and tested using the same classifier.
+        </p>
+            <!-- <embed src="taxon_labels_numbers.png" width="1000px" height="563px" /> -->
+        <!-- Interpolating. -->
+    
+    </div>
+    <!--/ Visual Effects. -->
+    <br>
+    <br>
+            
+      
+    <!-- Visual Effects. -->
+
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin-top:-50px;"> 
+    <h2 class="title is-3">ImageNet-C (CC) accuracy for PRIME-Resnet50 before and after finetuning.</h2>
+    <img srcset="cc.png" alt="alt" width="1000px" height="563px" image-rendering: high-quality;>
+    <p>
+         We investigate the effect of finetuning a PRIME-ResNet50 model on our generated fooling images. We find that the accuracy on the ImageNet-C benchmark doesn't change on average but different categories improves and worsen.
+    </p>
+        <!-- <embed src="taxon_labels_numbers.png" width="1000px" height="563px" /> -->
+    <!-- Interpolating. -->
+
+</div>
+<!--/ Visual Effects. -->
+<br>
+<br>
+
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{christensen2022apt
+    author    = {Christensen, Peter Ebert and Snæbjarnarson, Vésteinn and Dittadi, Andrea and Belongie, Serge and Benaim, Sagie},
+    title     = {Assessing Neural Network Robustness via Adversarial Pivotal Tuning},
+    journal   = {arxiv},
+    year      = {2022},
+  }
+</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://homes.cs.washington.edu/~kpar/nerfies/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
