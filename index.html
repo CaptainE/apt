@@ -122,7 +122,7 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">APT</span> autogenerates images that will atempt to fool a classifier while also being photo realistic
+        <span class="dnerf">APT</span> uses the full capacity of a pretrained generator to produce semantic adversarial manipulations
       </h2>
     </div>
   </div>
@@ -139,8 +139,14 @@
                 <h2 class="title is-3">Visualizations</h2>
                 <h3 class="title is-4">Overview of the Generated Manipulations</h3>
                 <img srcset="teaser.png" alt="alt" width="1000px" height="563px" image-rendering: high-quality;>
-                <p>
-                    Row 1 shows the input images. Row 2 shows the images resulting from our manipulations. Row 3 (and 4)
+
+                    <!-- <embed src="taxon_labels_numbers.png" width="1000px" height="563px" /> -->
+                <!-- Interpolating. -->
+                
+            </div>
+        </div>
+        <p>
+          Row 1 shows the input images. Row 2 shows the images resulting from our manipulations. Row 3 (and 4)
 shows the result of Dual manifold adversarial robustness, using pixel-space adversarial manipulations applied to StyleGAN-XL’s reconstructions. Row 4 shows the result
 using latent space manipulates applied using StyleGAN-XL. Our method manipulates images in a non-trivial but class-preserving
 manner, using the full capacity of a pretrained StyleGAN generator. For example, it removes the eye of the mantis (second column), changes
@@ -148,12 +154,7 @@ the type of race car (third column), changes the color of the crab tail (fifth c
 removes some of the ropes (eighth column). All of these are class-preserving examples that fool a pretrained PRIME-ResNet50 
 classifier. In contrast, Dual manifold adversarial robustness either generates noisy and less realistic images (row 3) or images which differ significantly semantically and
 which do not preserve the input class (row 4).
-                </p>
-                    <!-- <embed src="taxon_labels_numbers.png" width="1000px" height="563px" /> -->
-                <!-- Interpolating. -->
-                
-            </div>
-        </div>
+      </p>
     </div>
 </section>
 
@@ -179,7 +180,7 @@ which do not preserve the input class (row 4).
             We further demonstrate that classifiers trained to be robust to other robustness benchmarks, are not robust to our generated manipulations and propose an approach to improve the robustness towards our generated manipulations.
             </p>
             <p> 
-                TL;DR We propose a framework for generation of photorealistic images that can fool a classifier using automatic semantic manipulations
+                TL:DR We propose a framework for generation of photorealistic images that can fool a classifier using automatic semantic manipulations
             </p>
         </div>
       </div>
@@ -200,6 +201,8 @@ which do not preserve the input class (row 4).
         <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin-top:-50px;"> 
         <h2 class="title is-3">The Adversarial Pivotal Tuning (APT) framework</h2>
         <img srcset="apt.png" alt="alt" width="1000px" height="563px" image-rendering: high-quality;>
+    </div>
+
         <p>
             In the first step, we optimize a style code wp using standard latent optimization Lo, while keeping the generator G frozen. 
             The loss is computed between the ground-truth image xgtr and the generated image xgen. 
@@ -210,7 +213,6 @@ classifier C. A ∗ is used to indicate a frozen component
             <!-- <embed src="taxon_labels_numbers.png" width="1000px" height="563px" /> -->
         <!-- Interpolating. -->
       
-      </div>
       <br>
       <br>
       <!--/ Visual Effects. -->
@@ -226,6 +228,8 @@ classifier C. A ∗ is used to indicate a frozen component
         <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin-top:-50px;"> 
         <h2 class="title is-3">Manipulations using different classifiers</h2>
         <img srcset="classifiers.png" alt="alt" width="1000px" height="563px" image-rendering: high-quality;>
+    </div>
+
         <p>
             Top row shows input images. The middle row shows APT manipulations for a ResNet-50 classifier,
 and the bottom row shows APT manipulations from a FAN-VIT classifier. Column 1-4+7 illustrates similar manipulations for both classifiers, 
@@ -234,7 +238,6 @@ column 5-6 shows texture and spatial manipulations, the last column showcase a f
             <!-- <embed src="taxon_labels_numbers.png" width="1000px" height="563px" /> -->
         <!-- Interpolating. -->
     
-    </div>
     <!--/ Visual Effects. -->
     <br>
     <br>
@@ -247,6 +250,7 @@ column 5-6 shows texture and spatial manipulations, the last column showcase a f
         <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin-top:-50px;"> 
         <h2 class="title is-3">Transferability of APT generated samples</h2>
         <img srcset="transfer.png" alt="alt" width="1000px" height="563px" image-rendering: high-quality;>
+      </div>
         <p>
              For the ImageNet-1k validation set, we consider samples generated to fool a PRIME-Resnet50 (PRIME) and a FAN-VIT (FAN) pretrained classifier. We then test the accuracy (Acc) and mean softmax probability
 of the labelled class (Conf) on those samples. The left column indicates the classifier on which we tested the accuracy of real or generatedsamples. ∗ indicates the accuracy and confidence of samples generated and tested using the same classifier.
@@ -254,8 +258,20 @@ of the labelled class (Conf) on those samples. The left column indicates the cla
             <!-- <embed src="taxon_labels_numbers.png" width="1000px" height="563px" /> -->
         <!-- Interpolating. -->
     
-    </div>
     <!--/ Visual Effects. -->
+    <br>
+    <br>
+            
+      
+    <!-- Visual Effects. -->
+    <div class="column is-full-width  has-text-centered">
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin-top:-50px;"> 
+    <h2 class="title is-3">Average accuracy and confidence on APT samples using PRIME-ResNet50 before and after fine-tuning.</h2>
+    <img srcset="confidence.png" alt="alt" width="500px" height="263px" image-rendering: high-quality;>
+  </div>
+    <p>
+         We investigate the effect of finetuning a PRIME-ResNet50 model on our generated fooling images. We find that the accuracy on fooling images increases.
+    </p>
     <br>
     <br>
             
@@ -263,15 +279,14 @@ of the labelled class (Conf) on those samples. The left column indicates the cla
     <!-- Visual Effects. -->
 
     <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin-top:-50px;"> 
-    <h2 class="title is-3">ImageNet-C (CC) accuracy for PRIME-Resnet50 before and after finetuning.</h2>
-    <img srcset="cc.png" alt="alt" width="1000px" height="563px" image-rendering: high-quality;>
+    <h2 class="title is-3">Acknowledgement</h2>
     <p>
-         We investigate the effect of finetuning a PRIME-ResNet50 model on our generated fooling images. We find that the accuracy on the ImageNet-C benchmark doesn't change on average but different categories improves and worsen.
+      This research was supported by the Pioneer Centre for AI, DNRF grant number P1. 
     </p>
         <!-- <embed src="taxon_labels_numbers.png" width="1000px" height="563px" /> -->
     <!-- Interpolating. -->
 
-</div>
+
 <!--/ Visual Effects. -->
 <br>
 <br>
