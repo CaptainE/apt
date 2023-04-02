@@ -6,11 +6,22 @@ This is the repository that contains source code for the [APT website](https://c
 
 If you find Adversarial Pivotal Tuning useful for your work please cite:
 ```
-@article{christensen2022apt
-  author    = {Christensen, Peter Ebert and Snæbjarnarson, Vésteinn and Dittadi, Andrea and Belongie, Serge and Benaim, Sagie},
-  title     = {Assessing Neural Network Robustness via Adversarial Pivotal Tuning},
-  journal   = {arxiv},
-  year      = {2022},
+@misc{christensen2022apt,
+  doi = {10.48550/ARXIV.2211.09782},
+  
+  url = {https://arxiv.org/abs/2211.09782},
+  
+  author = {Christensen, Peter Ebert and Snæbjarnarson, Vésteinn and Dittadi, Andrea and Belongie, Serge and Benaim, Sagie},
+  
+  keywords = {Computer Vision and Pattern Recognition (cs.CV), Cryptography and Security (cs.CR), Machine Learning (cs.LG), FOS: Computer and information sciences, FOS: Computer and information sciences},
+  
+  title = {Assessing Neural Network Robustness via Adversarial Pivotal Tuning},
+  
+  publisher = {arXiv},
+  
+  year = {2022},
+  
+  copyright = {Creative Commons Attribution 4.0 International}
 }
 ```
 
