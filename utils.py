@@ -3,9 +3,10 @@ import os
 import numpy as np
 import PIL.Image
 import torch
-
+import json
 import dnnlib
 import legacy
+import torchvision.models as md
 
 
 def disable_gradient_flow_for_model(model:torch.nn.Module, device):
@@ -75,3 +76,52 @@ def synthesize_and_save_image(generator, style_code, save_name):
     synth_image = (synth_image + 1) * (255/2)
     synth_image = synth_image.permute(0, 2, 3, 1).clamp(0, 255).to(torch.uint8)[0].cpu().numpy()
     PIL.Image.fromarray(synth_image, 'RGB').save(save_name)
+
+def prepare_classifier(classifier_object, device):
+    if classifier_object:
+        disable_gradient_flow_for_model(classifier_object,device)
+        return classifier_object
+    else:
+        return prepare_prime_resnet50_classifier_for_fooling(device, "ResNet50_ImageNet_PRIME_noJSD.ckpt")
+
+def prepare_prime_resnet50_classifier_for_fooling(device, perceptor_path):
+    perceptor = md.resnet50(pretrained=True)
+    perceptor.eval().requires_grad_(False)
+    base_model=torch.load(perceptor_path)
+    perceptor.load_state_dict(base_model)
+    disable_gradient_flow_for_model(perceptor,device)
+    return perceptor
+
+def prepare_discriminator_generator(device):
+
+    network_pkl = "https://s3.eu-central-1.amazonaws.com/avg-projects/stylegan_xl/models/imagenet256.pkl"
+    generator, discriminator = prepare_styleganxl_generator_discriminator(network_pkl, device)
+
+    disable_gradient_flow_for_model(generator, device)
+    disable_gradient_flow_for_model(discriminator, device)
+
+    discriminator = remove_tf_diff_discriminator(discriminator)
+    discriminator = discriminators_on_device(discriminator,device)
+
+    return generator, discriminator
+
+def get_imagenet_classname_to_class_mapping():
+
+    f= open("imagenet_class_index.json")
+    idxs = json.load(f)
+    inv_map = {v[0]: int(k) for k, v in idxs.items()}
+    return inv_map
+
+def prepare_init_latent_optimization_input(target_fname, inv_map, folder, num_classes_in_dataset, device):
+    path = target_fname + "_projected_w.npz"
+    path_exist = os.path.exists(path)
+    if path_exist:
+        w_init = path
+    else:
+        w_init = False
+
+    target_class = inv_map[folder]
+    c_samples = torch.tensor(np.zeros([1, num_classes_in_dataset], dtype=np.float32)).to(device)
+    c_samples[:,target_class]=1
+
+    return w_init, target_class, c_samples
