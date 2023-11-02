@@ -79,13 +79,14 @@
               <a href="https://sergebelongie.github.io/">Serge Belongie</a><sup>1</sup>,
             </span>
             <span class="author-block">
-              <a href="https://sagiebenaim.github.io/">Sagie Benaim</a><sup>1</sup>
+              <a href="https://sagiebenaim.github.io/">Sagie Benaim</a><sup>3</sup>
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>University of Copenhagen,</span>
-            <span class="author-block"><sup>2</sup>KTH Stockholm</span>
+            <span class="author-block"><sup>2</sup>Helmholtz AI</span>
+            <span class="author-block"><sup>2</sup>Hebrew University of Jerusalem</span>
           </div>
 
           <div class="column has-text-centered">
@@ -98,6 +99,15 @@
                       <i class="fas fa-file-pdf"></i>
                   </span>
                   <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/CaptainE/apt/tree/code"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
                 </a>
               </span>
               <span class="link-block">
@@ -161,34 +171,19 @@ which do not preserve the input class (row 4).
 
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-            <p>
-            The ability to assess the robustness of image classifiers to a diverse set of manipulations is essential to their deployment in the real world. 
-            Recently, semantic manipulations of real images have been considered for this purpose, as they may not arise using standard adversarial settings.
-            However, such semantic manipulations are often limited to style, color or attribute changes. 
-            While expressive, these manipulations do not consider the full capacity of a pretrained generator to affect adversarial image manipulations. 
-            In this work, we aim at leveraging the full capacity of a pretrained image generator to generate highly detailed, diverse and photorealistic image manipulations. 
-            Inspired by recent GAN-based image inversion methods, we propose a method called Adversarial Pivotal Tuning (APT). 
-            APT first finds a pivot latent space input to a pretrained generator that best reconstructs an input image. 
-            It then adjusts the weights of the generator to create small, but semantic, manipulations which fool a pretrained classifier. 
-            Crucially, APT changes both the input and the weights of the pretrained generator, while preserving its expressive latent editing capability, thus allowing the use of its full capacity in creating semantic adversarial manipulations. 
-            We demonstrate that APT generates a variety of semantic image manipulations, which preserve the input image class, but which fool a variety of pretrained classifiers. 
-            We further demonstrate that classifiers trained to be robust to other robustness benchmarks, are not robust to our generated manipulations and propose an approach to improve the robustness towards our generated manipulations.
-            </p>
-            <p> 
-                TL:DR We propose a framework for generation of photorealistic images that can fool a classifier using automatic semantic manipulations
-            </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Abstract. -->
+      <div class="columns is-centered has-text-centered">
+          <div class="column is-full-width">
 
+              <h2 class="title is-3">TLDR</h2>
+              
+          </div>
+      </div>
+      <p>
+        We propose a framework for generation of photorealistic images that fool a classifier using automatic semantic manipulations
+    </p>
   </div>
 </section>
+
 
 
 <section class="section">
@@ -232,8 +227,9 @@ classifier C. A ∗ is used to indicate a frozen component
 
         <p>
             Top row shows input images. The middle row shows APT manipulations for a ResNet-50 classifier,
-and the bottom row shows APT manipulations from a FAN-VIT classifier. Column 1-4+7 illustrates similar manipulations for both classifiers, 
-column 5-6 shows texture and spatial manipulations, the last column showcase a fooling image without a clear APT manipulation.
+and the bottom row shows APT manipulations from a FAN-VIT classifier. The leftmost image of a dog and the subsequent images including
+the image of a butterfly and column 7 (Fluffy dog) show similar manipulations for both classifiers, column 5-6 shows texture and spatial
+manipulations, the last column showcase a fooling image without a clear APT manipulati
         </p>
             <!-- <embed src="taxon_labels_numbers.png" width="1000px" height="563px" /> -->
         <!-- Interpolating. -->
@@ -249,7 +245,7 @@ column 5-6 shows texture and spatial manipulations, the last column showcase a f
 
         <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin-top:-50px;"> 
         <h2 class="title is-3">Transferability of APT generated samples</h2>
-        <img srcset="transfer.png" alt="alt" width="1000px" height="563px" image-rendering: high-quality;>
+        <img srcset="Transferability.png" alt="alt" width="1000px" height="563px" image-rendering: high-quality;>
       </div>
         <p>
              For the ImageNet-1k validation set, we consider samples generated to fool a PRIME-Resnet50 (PRIME) and a FAN-VIT (FAN) pretrained classifier. We then test the accuracy (Acc) and mean softmax probability
@@ -262,15 +258,46 @@ of the labelled class (Conf) on those samples. The left column indicates the cla
     <br>
     <br>
             
+
+
+    <div class="column is-full-width  has-text-centered">
+
+      <!-- Visual Effects. -->
+  
+          <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin-top:-50px;"> 
+          <h2 class="title is-3">Attack Success Rate (ASR) for APT, SSAH and PGD</h2>
+          <img srcset="asr.png" alt="alt" width="640px" height="420px" image-rendering: high-quality;>
+        </div>
+          <p>
+               We investigate the attack success rate for our method APT against more traditional but imperceptible attacks such as PGD and SSAH.
+               Additionally we also test how well these generated images can fool other classifiers that was not subject to an attack.
+          </p> 
+          <div class="column is-full-width  has-text-centered">
+
+          <p>
+            An example of these attacks are illustrated here
+           </p>
+          <img srcset="eagle.png" alt="alt" width="640px" height="420px" image-rendering: high-quality;>
+        </div>
+
+              <!-- <embed src="taxon_labels_numbers.png" width="1000px" height="563px" /> -->
+          <!-- Interpolating. -->
+      
+      <!--/ Visual Effects. -->
+      <br>
+      <br>
+              
       
     <!-- Visual Effects. -->
     <div class="column is-full-width  has-text-centered">
     <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin-top:-50px;"> 
     <h2 class="title is-3">Average accuracy and confidence on APT samples using PRIME-ResNet50 before and after fine-tuning.</h2>
-    <img srcset="confidence.png" alt="alt" width="500px" height="263px" image-rendering: high-quality;>
+    <img srcset="finetune.png" alt="alt" width="500px" height="263px" image-rendering: high-quality;>
   </div>
     <p>
-         We investigate the effect of finetuning a PRIME-ResNet50 model on our generated fooling images. We find that the accuracy on fooling images increases.
+         We investigate the effect of finetuning a PRIME-ResNet50 model on our generated fooling images usng APT, PGD and SSAG. 
+         We find that the accuracy to correcly predict the original class increases after finetuning for each indidual attack
+         but also when combining all attacks.
     </p>
     <br>
     <br>
